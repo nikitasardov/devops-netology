@@ -4,3 +4,5 @@
 Благодаря добавленному файлу terraform/.gitignore будут проигнорированы все файлы внутри terraform/, соответствующие указанным в нем шаблонам
 
 # change this line for commit in new branch
+
+# changes with IDE
