@@ -305,31 +305,23 @@ ai@ai:/var/www/study/netology/devops/devops-netology (master)$: tar xf terraform
 ai@ai:/var/www/study/netology/devops/devops-netology (master)$: cd terraform_extracted/
 ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: ls -la
 total 28
-drwxrwxr-x 3 ai ai       4096 июл 17 13:35 .
-drwxr-x--- 6 ai www-data 4096 июл 17 13:35 ..
+drwxrwxr-x 3 ai ai       4096 июл 17 14:00 .
+drwxr-x--- 6 ai www-data 4096 июл 17 14:00 ..
 drwxr-xr-x 3 ai ai       4096 июн 11 13:26 blobs
 -rw-r--r-- 1 ai ai        367 янв  1  1970 index.json
 -rw-r--r-- 1 ai ai       1390 янв  1  1970 manifest.json
 -rw-r--r-- 1 ai ai         31 янв  1  1970 oci-layout
 -rw-r--r-- 1 ai ai        102 янв  1  1970 repositories
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: find -type f -name terraform
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: find . -type f -name terraform
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: cd ../
-ai@ai:/var/www/study/netology/devops/devops-netology (master)$: find terraform_extracted -name layer.tar -exec tar tf {} \; | grep '/bin/terraform'
-ai@ai:/var/www/study/netology/devops/devops-netology (master)$: find . -type f -name 'terraform*'
-./terraform
-./terraform-image.tar
-./terraform-bin
-ai@ai:/var/www/study/netology/devops/devops-netology (master)$: cd terraform_extracted/
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: find .  -name 'terraform*'
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: ls -la blobs/
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: cd blobs
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs (master)$: ls -la
 total 12
 drwxr-xr-x 3 ai ai 4096 июн 11 13:26 .
-drwxrwxr-x 3 ai ai 4096 июл 17 13:35 ..
-drwxr-xr-x 2 ai ai 4096 июл 17 13:34 sha256
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: ls -la blobs/sha256/
+drwxrwxr-x 3 ai ai 4096 июл 17 14:00 ..
+drwxr-xr-x 2 ai ai 4096 июл 17 14:00 sha256
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs (master)$: cd sha256/
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs/sha256 (master)$: ls -la
 total 120072
-drwxr-xr-x 2 ai ai     4096 июл 17 13:34 .
+drwxr-xr-x 2 ai ai     4096 июл 17 14:00 .
 drwxr-xr-x 3 ai ai     4096 июн 11 13:26 ..
 -rw-r--r-- 1 ai ai      482 июн 11 13:26 4cd4d392a58866c5787c8d21921400d7d18547a8a006d1b992ab37156fc71d8a
 -rw-r--r-- 1 ai ai     8704 июн 11 13:26 6bb76c4390d16c34eb26fa6e5f13f650dbac732c2dd1add8b3771b5c62df11f4
@@ -341,37 +333,31 @@ drwxr-xr-x 3 ai ai     4096 июн 11 13:26 ..
 -rw-r--r-- 1 ai ai     1695 июн 11 13:26 d8af71b4dccb4de7bc140edbf76866888eca3e2ceb2ea2f61867bc4987860908
 -rw-r--r-- 1 ai ai      482 июн 11 13:26 fa0c98219c59f1492343f160182d116eb914377258ad9dd61145f4bc0f1e64c3
 -rw-r--r-- 1 ai ai  8593920 июн 11 13:26 fd2758d7a50e2b78d275ee7d1c218489f2439084449d895fa17eede6c61ab2c4
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: ls -la blobs/sha256/6be188821a1e6d0af92854aa290cf75a053ad8525dfc35f3d7d256daeb20bc34
--rw-r--r-- 1 ai ai 93604352 июн 11 13:26 blobs/sha256/6be188821a1e6d0af92854aa290cf75a053ad8525dfc35f3d7d256daeb20bc34
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: cp 6be188821a1e6d0af92854aa290cf75a053ad8525dfc35f3d7d256daeb20bc34 ./layer.tar
-cp: cannot stat '6be188821a1e6d0af92854aa290cf75a053ad8525dfc35f3d7d256daeb20bc34': No such file or directory
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: cp blobs/sha256/6be188821a1e6d0af92854aa290cf75a053ad8525dfc35f3d7d256daeb20bc34 ./layer.tar
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: mkdir -p terraform_layer
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: tar xf layer.tar -C terraform_layer
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted (master)$: cd terraform_layer/
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/terraform_layer (master)$: sl -la
-
-Command 'sl' not found, but can be installed with:
-
-sudo apt install sl
-
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/terraform_layer (master)$: ls -la
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs/sha256 (master)$: ls -la blobs/sha256/6be188821a1e6d0af92854aa290cf75a053ad8525dfc35f3d7d256daeb20bc34
+ls: cannot access 'blobs/sha256/6be188821a1e6d0af92854aa290cf75a053ad8525dfc35f3d7d256daeb20bc34': No such file or directory
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs/sha256 (master)$: ls -la 6be188821a1e6d0af92854aa290cf75a053ad8525dfc35f3d7d256daeb20bc34 
+-rw-r--r-- 1 ai ai 93604352 июн 11 13:26 6be188821a1e6d0af92854aa290cf75a053ad8525dfc35f3d7d256daeb20bc34
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs/sha256 (master)$: cp 6be188821a1e6d0af92854aa290cf75a053ad8525dfc35f3d7d256daeb20bc34 ./layer.tar
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs/sha256 (master)$: mkdir -p terraform_layer
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs/sha256 (master)$: tar xf layer.tar -C terraform_layer
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs/sha256 (master)$: cd terraform_layer/
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs/sha256/terraform_layer (master)$: ls -la
 total 12
-drwxrwxr-x 3 ai ai 4096 июл 17 13:43 .
-drwxrwxr-x 4 ai ai 4096 июл 17 13:43 ..
+drwxrwxr-x 3 ai ai 4096 июл 17 14:02 .
+drwxr-xr-x 3 ai ai 4096 июл 17 14:02 ..
 drwxr-xr-x 2 ai ai 4096 июн 11 13:26 bin
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/terraform_layer (master)$: cd bin/
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/terraform_layer/bin (master)$: ls -la
-total 91420
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs/sha256/terraform_layer (master)$: cd bin/
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs/sha256/terraform_layer/bin (master)$: ls -la
+total 91424
 drwxr-xr-x 2 ai ai     4096 июн 11 13:26 .
-drwxrwxr-x 3 ai ai     4096 июл 17 13:43 ..
+drwxrwxr-x 3 ai ai     4096 июл 17 14:02 ..
 -rwxr-xr-x 1 ai ai 93601976 июн 11 13:22 terraform
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/terraform_layer/bin (master)$: terraform --version
-Terraform v1.8.4
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs/sha256/terraform_layer/bin (master)$: ./terraform --version
+Terraform v1.12.2
 on linux_amd64
-ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/terraform_layer/bin (master)$: 
+ai@ai:/var/www/study/netology/devops/devops-netology/terraform_extracted/blobs/sha256/terraform_layer/bin (master)$: 
 ```
-![](https://i.postimg.cc/LsPdTVW4/2025-07-17-13-44.png)
+![](https://i.postimg.cc/g00FZZ94/2025-07-17-14-03.png)
 Предоставьте скриншоты  действий .
 
 ## Задача 6.1
