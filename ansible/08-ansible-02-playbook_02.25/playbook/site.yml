@@ -7,27 +7,22 @@
         name: clickhouse-server
         state: restarted
   tasks:
-    - block:
-        - name: Get clickhouse distrib
-          ansible.builtin.get_url:
-            url: "https://packages.clickhouse.com/rpm/stable/{{ item }}-{{ clickhouse_version }}.noarch.rpm"
-            dest: "./{{ item }}-{{ clickhouse_version }}.rpm"
-          with_items: "{{ clickhouse_packages }}"
-      rescue:
-        - name: Get clickhouse distrib
-          ansible.builtin.get_url:
-            url: "https://packages.clickhouse.com/rpm/stable/clickhouse-common-static-{{ clickhouse_version }}.x86_64.rpm"
-            dest: "./clickhouse-common-static-{{ clickhouse_version }}.rpm"
     - name: Install clickhouse packages
       ansible.builtin.yum:
         name:
-          - clickhouse-common-static-{{ clickhouse_version }}.rpm
-          - clickhouse-client-{{ clickhouse_version }}.rpm
-          - clickhouse-server-{{ clickhouse_version }}.rpm
-        use_backend: yum3
-      notify: Start clickhouse service
-    - name: Flush handlers
-      meta: flush_handlers
+          - clickhouse-client
+          - clickhouse-server
+        state: present
+        disable_gpg_check: true
+    - name: Start clickhouse service
+      ansible.builtin.service:
+        name: clickhouse-server
+        state: started
+    - name: Wait for Clickhouse to start
+      ansible.builtin.wait_for:
+        port: 8123
+        delay: 5
+        timeout: 60
     - name: Create database
       ansible.builtin.command: "clickhouse-client -q 'create database logs;'"
       register: create_db
