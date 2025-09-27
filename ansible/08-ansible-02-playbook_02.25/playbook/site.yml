@@ -3,21 +3,34 @@
   hosts: clickhouse
   handlers:
     - name: Start clickhouse service
-      ansible.builtin.service:
-        name: clickhouse-server
-        state: restarted
+      ansible.builtin.command: "clickhouse-server --daemon"
+      changed_when: false
   tasks:
+    - name: Get clickhouse distrib
+      ansible.builtin.get_url:
+        url: "https://packages.clickhouse.com/rpm/stable/{{ item }}-{{ clickhouse_version }}.noarch.rpm"
+        dest: "./{{ item }}-{{ clickhouse_version }}.rpm"
+      with_items:
+        - clickhouse-client
+        - clickhouse-server
+    - name: Get clickhouse common static
+      ansible.builtin.get_url:
+        url: "https://packages.clickhouse.com/rpm/stable/clickhouse-common-static-{{ clickhouse_version }}.x86_64.rpm"
+        dest: "./clickhouse-common-static-{{ clickhouse_version }}.rpm"
     - name: Install clickhouse packages
       ansible.builtin.yum:
         name:
-          - clickhouse-client
-          - clickhouse-server
-        state: present
+          - clickhouse-common-static-{{ clickhouse_version }}.rpm
+          - clickhouse-client-{{ clickhouse_version }}.rpm
+          - clickhouse-server-{{ clickhouse_version }}.rpm
         disable_gpg_check: true
+        disablerepo: "*"
+      notify: Start clickhouse service
+    - name: Flush handlers
+      meta: flush_handlers
     - name: Start clickhouse service
-      ansible.builtin.service:
-        name: clickhouse-server
-        state: started
+      ansible.builtin.command: "clickhouse-server --daemon"
+      changed_when: false
     - name: Wait for Clickhouse to start
       ansible.builtin.wait_for:
         port: 8123
@@ -33,9 +46,7 @@
   hosts: vector
   handlers:
     - name: Restart vector service
-      ansible.builtin.service:
-        name: vector
-        state: restarted
+      ansible.builtin.command: "pkill -f vector || true && /usr/local/bin/vector --config /etc/vector.toml &"
   tasks:
     - name: Download Vector
       ansible.builtin.get_url:
