@@ -7,7 +7,7 @@ clickhouse:
 lighthouse:
   hosts:
     lighthouse-01:
-      ansible_host: 51.250.85.242
+      ansible_host: 158.160.51.32
       ansible_user: test
 vector:
   hosts:
