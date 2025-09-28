@@ -1,0 +1,4 @@
+---
+lighthouse_version: "master"
+lighthouse_install_dir: "/var/www/lighthouse"
+lighthouse_nginx_config: "/etc/nginx/sites-available/lighthouse"

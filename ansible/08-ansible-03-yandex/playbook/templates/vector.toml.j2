@@ -1,0 +1,14 @@
+data_dir = "/tmp"
+
+[sources.demo_logs]
+type = "demo_logs"
+format = "apache_common"
+interval = 1.0
+
+[sinks.clickhouse]
+type = "clickhouse"
+inputs = ["demo_logs"]
+endpoint = "http://clickhouse-01:8123"
+database = "logs"
+table = "logs"
+auth.strategy = "none"
