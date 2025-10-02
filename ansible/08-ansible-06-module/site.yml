@@ -1,0 +1,7 @@
+---
+- name: Create file with content
+  hosts: localhost
+  become: true
+  roles:
+    - textfile
+
