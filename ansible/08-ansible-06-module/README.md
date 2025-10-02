@@ -52,7 +52,11 @@
 **Шаг 11.** Создайте playbook для использования этой role.
 
 **Шаг 12.** Заполните всю документацию по collection, выложите в свой репозиторий, поставьте тег `1.0.0` на этот коммит.
-https://github.com/nikitasardov/my_own_collection/commit/541e3b92aabb5252a35b93d03bef432d0a762475
+1.0.0: https://github.com/nikitasardov/my_own_collection/commit/541e3b92aabb5252a35b93d03bef432d0a762475
+1.0.1: https://github.com/nikitasardov/my_own_collection/commit/15e0bde449bd1b355fcf27910107f0c40cf85fef
+1.0.2: https://github.com/nikitasardov/my_own_collection/commit/46f1fa09586db0c88eb0aebb2442e4d2019b975b
+
+1.0.2 - финальный вариант. Были исправления в роли
 
 **Шаг 13.** Создайте .tar.gz этой collection: `ansible-galaxy collection build` в корневой директории collection.
 ![collection build](https://i.postimg.cc/7hgjvYB6/2025-10-02-13-08.png)
