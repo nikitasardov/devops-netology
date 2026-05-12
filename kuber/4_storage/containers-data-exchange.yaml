@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-exchange
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: busybox-multitool
+  template:
+    metadata:
+      labels:
+        app: busybox-multitool
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ["/bin/sh", "-c"] 
+        args: ["while true; do echo $(date) > /storage/text.txt; sleep 5; done"]
+        volumeMounts:
+        - name: pod-storage
+          mountPath: /storage
+      - name: multitool
+        image: wbitt/network-multitool:latest
+        command: ["/bin/sh", "-c"]
+        args: ["until [ -f /logs/text.txt ]; do sleep 1; done; tail -f /logs/text.txt"]
+        volumeMounts:
+        - name: pod-storage
+          mountPath: /logs
+      volumes:
+      - name: pod-storage
+        emptyDir: {}
