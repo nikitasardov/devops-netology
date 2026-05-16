@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-app
+  namespace: otherns
+spec:
+  selector:
+    app: web-app
+  ports:
+    - name: web
+      port: 9080
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  namespace: otherns
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: my-secret-node.ru
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: web-app
+            port:
+              number: 9080
+  tls:
+  - hosts:
+    - my-secret-node.ru
+    secretName: tls-secret

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: otherns
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Дефолтная страница из ConfigMap</title>
+    </head>
+    <body>
+      <h1>Привет от кластера Kubernetes!</h1>
+    </body>
+    </html>
