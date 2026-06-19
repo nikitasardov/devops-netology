@@ -1,0 +1,5 @@
+cloud_id       = "<cloud_id>"
+folder_id      = "<folder_id>"
+default_zone   = "ru-central1-a"
+ssh_public_key = "ssh-ed25519 AAAA... user@host"
+bucket_name    = "<unique-bucket-name>"
