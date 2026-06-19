@@ -1,0 +1,5 @@
+cloud_id       = "<cloud_id>"
+folder_id      = "<folder_id>"
+default_zone   = "ru-central1-a"
+mysql_user     = "netology"
+mysql_password = "<strong_password>"
