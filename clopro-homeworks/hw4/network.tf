@@ -2,11 +2,18 @@ resource "yandex_vpc_network" "main" {
   name = var.vpc_name
 }
 
+moved {
+  from = yandex_vpc_subnet.public
+  to   = yandex_vpc_subnet.public["a"]
+}
+
 resource "yandex_vpc_subnet" "public" {
-  name           = var.public_subnet_name
-  zone           = var.default_zone
+  for_each = local.public_subnets
+
+  name           = each.value.name
+  zone           = each.value.zone
   network_id     = yandex_vpc_network.main.id
-  v4_cidr_blocks = var.public_cidr
+  v4_cidr_blocks = [each.value.cidr]
 }
 
 resource "yandex_vpc_subnet" "private" {

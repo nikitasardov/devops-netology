@@ -19,16 +19,6 @@ variable "vpc_name" {
   default = "netology-hw15-4-vpc"
 }
 
-variable "public_subnet_name" {
-  type    = string
-  default = "hw15-4-public"
-}
-
-variable "public_cidr" {
-  type    = list(string)
-  default = ["10.10.10.0/24"]
-}
-
 variable "mysql_version" {
   type    = string
   default = "8.0"
@@ -63,4 +53,49 @@ variable "mysql_user" {
 variable "mysql_password" {
   type      = string
   sensitive = true
+}
+
+variable "k8s_version" {
+  type    = string
+  default = "1.31"
+}
+
+variable "k8s_node_platform_id" {
+  type    = string
+  default = "standard-v3"
+}
+
+variable "k8s_node_cores" {
+  type    = number
+  default = 2
+}
+
+variable "k8s_node_memory" {
+  type    = number
+  default = 4
+}
+
+variable "k8s_node_disk_type" {
+  type    = string
+  default = "network-hdd"
+}
+
+variable "k8s_node_disk_size" {
+  type    = number
+  default = 64
+}
+
+variable "k8s_node_min" {
+  type    = number
+  default = 3
+}
+
+variable "k8s_node_max" {
+  type    = number
+  default = 6
+}
+
+variable "k8s_node_initial" {
+  type    = number
+  default = 3
 }
